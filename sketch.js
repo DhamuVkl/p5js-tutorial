@@ -142,6 +142,7 @@
 // }
 
 // #8 Graphics
+console.log("Graphics");
 let x = 200;
 let y = 200;
 let extracanvas;

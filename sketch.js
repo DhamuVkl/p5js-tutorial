@@ -109,26 +109,26 @@
 //   size = random(100);
 // }
 
-// //#6 colour circle paint
-// let r, g, b, size;
-// function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   background(0);
-// }
+//#6 colour circle paint
+let r, g, b, size;
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+}
 
-// function draw() {
-//   r = random(255);
-//   g = random(255);
-//   b = radians(255);
-//   circle(mouseX, mouseY, size);
-//   noStroke();
-//   fill(r, g, b);
-// }
+function draw() {
+  r = random(255);
+  g = random(255);
+  b = radians(255);
+  circle(mouseX, mouseY, size);
+  noStroke();
+  fill(r, g, b);
+}
 
-// function mousePressed() {
-//   background(0);
-//   size = random(100);
-// }
+function mousePressed() {
+  background(0);
+  size = random(100);
+}
 
 // //#7 backgrownd colour shift map function
 // function setup() {
@@ -142,32 +142,32 @@
 // }
 
 // #8 Graphics
-console.log("Graphics");
-let x = 200;
-let y = 200;
-let extracanvas;
+// console.log("Graphics");
+// let x = 200;
+// let y = 200;
+// let extracanvas;
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  extracanvas = createGraphics(windowWidth, windowHeight);
-  extracanvas.clear();
-  background(0);
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   extracanvas = createGraphics(windowWidth, windowHeight);
+//   extracanvas.clear();
+//   background(0);
 
-}
+// }
 
-function draw() {
-  background(0);
-  x += random(-5, 5);
-  y += random(-5, 5);
+// function draw() {
+//   background(0);
+//   x += random(-5, 5);
+//   y += random(-5, 5);
 
 
-  if (mouseIsPressed) {
-    extracanvas.fill(255, 150);
-    extracanvas.noStroke();
-    extracanvas.circle(mouseX, mouseY, 50);
-  }
-  image(extracanvas, 0, 0);
-  fill(255, 0, 0);
-  circle(x, y, 40);
+//   if (mouseIsPressed) {
+//     extracanvas.fill(255, 150);
+//     extracanvas.noStroke();
+//     extracanvas.circle(mouseX, mouseY, 50);
+//   }
+//   image(extracanvas, 0, 0);
+//   fill(255, 0, 0);
+//   circle(x, y, 40);
 
-}
+// }

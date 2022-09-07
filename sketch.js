@@ -164,11 +164,10 @@ function draw() {
   if (mouseIsPressed) {
     extracanvas.fill(255, 150);
     extracanvas.noStroke();
-    extracanvas.ellipse(mouseX, mouseY, 50, 50);
+    extracanvas.circle(mouseX, mouseY, 50);
   }
   image(extracanvas, 0, 0);
   fill(255, 0, 0);
-  rectMode(CENTER);
-  rect(x, y, 20, 20);
+  circle(x, y, 40);
 
 }

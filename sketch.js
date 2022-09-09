@@ -12,8 +12,8 @@
 //   stroke(10);
 //   strokeWeight(2);
 //   rect(250, 150, 100, 50);    
-  
-  
+
+
 //   fill(255, 255, 50, 100);
 //   noStroke();
 //   ellipse(250, 150, 50, 70);
@@ -159,13 +159,12 @@ function draw() {
   background(0);
   x += random(-5, 5);
   y += random(-5, 5);
+  let starx = random(width);
+  let stary = random(height);
+  extracanvas.fill(255, 150);
+  extracanvas.noStroke();
+  extracanvas.circle(starx, stary, 2);
 
-
-  if (mouseIsPressed) {
-    extracanvas.fill(255, 150);
-    extracanvas.noStroke();
-    extracanvas.circle(mouseX, mouseY, 50);
-  }
   image(extracanvas, 0, 0);
   fill(255, 0, 0);
   circle(x, y, 40);

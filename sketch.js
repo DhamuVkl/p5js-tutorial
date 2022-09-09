@@ -141,32 +141,67 @@
 //  background(col);
 // }
 
-// #8 Graphics
-console.log("Graphics");
-let x = 200;
-let y = 200;
-let extracanvas;
+//// #8 Graphics
+// console.log("Graphics");
+// let x = 200;
+// let y = 200;
+// let extracanvas;
+
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   extracanvas = createGraphics(windowWidth, windowHeight);
+//   extracanvas.clear();
+//   background(0);
+
+// }
+
+// function draw() {
+//   background(0);
+//   x += random(-5, 5);
+//   y += random(-5, 5);
+//   let starx = random(width);
+//   let stary = random(height);
+//   extracanvas.fill(255, 150);
+//   extracanvas.noStroke();
+//   extracanvas.circle(starx, stary, 2);
+
+//   image(extracanvas, 0, 0);   // layering extra canvas
+//   fill(255, 0, 0);
+//   circle(x, y, 40);
+
+// }
+
+
+// 9 Bouncing ball
+let rad = 50;
+let speedx = 2.8;
+let speedy = 2.2;
+let x, y;
+let xdir = 1;
+let ydir = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  extracanvas = createGraphics(windowWidth, windowHeight);
-  extracanvas.clear();
-  background(0);
+  noStroke();
+  ellipseMode(RADIUS);
+  x = width / 2;
+  y = height / 2;
 
 }
 
 function draw() {
-  background(0);
-  x += random(-5, 5);
-  y += random(-5, 5);
-  let starx = random(width);
-  let stary = random(height);
-  extracanvas.fill(255, 150);
-  extracanvas.noStroke();
-  extracanvas.circle(starx, stary, 2);
 
-  image(extracanvas, 0, 0);   // layering extra canvas
-  fill(255, 0, 0);
-  circle(x, y, 40);
+  background(0);
+  x = x + speedx * xdir;
+  y = y + speedy * ydir;
+  if (x > width - rad || x < rad) {
+    xdir *= -1;
+  }
+  if (y > height - rad || y < rad) {
+    ydir *= -1;
+  }
+  fill(255, 255, 0)
+  ellipse(x, y, rad, rad);
+
 
 }

@@ -165,7 +165,7 @@ function draw() {
   extracanvas.noStroke();
   extracanvas.circle(starx, stary, 2);
 
-  image(extracanvas, 0, 0);
+  image(extracanvas, 0, 0);   // layering extra canvas
   fill(255, 0, 0);
   circle(x, y, 40);
 

@@ -271,14 +271,34 @@
 //   ellipse(x, y, dia, dia);
 // }
 
-// #13 function return
+// // #13 function return
+// function setup() {
+//   km = milesTokm(87.9);
+//   print(km);
+//   km1 = milesTokm(100);
+//   print(km1);
+// }
+// function milesTokm(miles) {
+//   km = miles * 1.6;
+//   return km;
+// }
+
+// #14 Class OOP(object orinted programing)
+let bubble;
 function setup() {
-  km = milesTokm(87.9);
-  print(km);
-  km1 = milesTokm(100);
-  print(km1);
+  createCanvas(windowWidth, windowHeight);
+  bubble = new Bubble();
+  print(bubble.x, bubble.y);
 }
-function milesTokm(miles) {
-  km = miles * 1.6;
-  return km;
+
+function draw() {
+  background(0);
+
+}
+
+class Bubble {
+  constructor() {
+    this.x = 100;
+    this.y = 200;
+  }
 }

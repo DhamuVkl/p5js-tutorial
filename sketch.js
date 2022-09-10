@@ -172,36 +172,62 @@
 // }
 
 
-// 9 Bouncing ball
-let rad = 50;
-let speedx = 2.8;
-let speedy = 2.2;
-let x, y;
-let xdir = 1;
-let ydir = 1;
+// // 9 Bouncing ball
+// let rad = 50;
+// let speedx = 2.8;
+// let speedy = 2.2;
+// let x, y;
+// let xdir = 1;
+// let ydir = 1;
 
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   noStroke();
+//   ellipseMode(RADIUS);
+//   x = width / 2;
+//   y = height / 2;
+
+// }
+
+// function draw() {
+
+//   background(0);
+//   x = x + speedx * xdir;
+//   y = y + speedy * ydir;
+//   if (x > width - rad || x < rad) {
+//     xdir *= -1;
+//   }
+//   if (y > height - rad || y < rad) {
+//     ydir *= -1;
+//   }
+//   fill(255, 255, 0)
+//   ellipse(x, y, rad, rad);
+
+
+// }
+
+// #10 loop
+rad = 25;
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  noStroke();
-  ellipseMode(RADIUS);
-  x = width / 2;
-  y = height / 2;
-
+  background(0);
 }
 
 function draw() {
-
-  background(0);
-  x = x + speedx * xdir;
-  y = y + speedy * ydir;
-  if (x > width - rad || x < rad) {
-    xdir *= -1;
+  let x = 0;
+  // atempt #1
+  while (x <= width) {
+    ellipseMode(CENTER);
+    fill(0, 255, 0);
+    ellipse(x, 200, rad, rad);
+    x += 50;
   }
-  if (y > height - rad || y < rad) {
-    ydir *= -1;
+  // atempt #2
+  for (let a = 0; a <= width; a += 50) {
+    ellipseMode(CENTER);
+    fill(255, 0, 0);
+    ellipse(a, 400, rad, rad);
   }
-  fill(255, 255, 0)
-  ellipse(x, y, rad, rad);
-
-
+  // atempt #1 & #2 both same
 }
+

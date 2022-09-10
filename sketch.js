@@ -2,16 +2,16 @@
 // 9 Bouncing ball
 let rad = 50;
 let speed = {
-  x : 2.8,
-  y : 2
+  x: 2.8,
+  y: 2
 }
 let pos = {
-  x : 0,
-  y : 0
+  x: 0,
+  y: 0
 }
 let dir = {
-  x : 1,
-  y : 1
+  x: 1,
+  y: 1
 }
 
 function setup() {
@@ -24,19 +24,28 @@ function setup() {
 }
 
 function draw() {
+  move();
+  bounce();
+  display();
+}
 
-  background(0);
+function move() {
   pos.x = pos.x + speed.x * dir.x;
   pos.y = pos.y + speed.y * dir.y;
+}
+
+function bounce() {
+
   if (pos.x > width - rad || pos.x < rad) {
     dir.x *= -1;
   }
   if (pos.y > height - rad || pos.y < rad) {
     dir.y *= -1;
   }
-  fill(255, 255, 0)
-  ellipse(pos.x, pos.y, rad, rad);
-
-
 }
 
+function display() {
+  background(0);
+  fill(255, 255, 0)
+  ellipse(pos.x, pos.y, rad, rad);
+}

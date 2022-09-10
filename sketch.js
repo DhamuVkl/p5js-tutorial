@@ -16,8 +16,6 @@ let dir = {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  noStroke();
-  ellipseMode(RADIUS);
   pos.x = width / 2;
   pos.y = height / 2;
 
@@ -46,6 +44,8 @@ function bounce() {
 
 function display() {
   background(0);
+  noStroke();
+  ellipseMode(RADIUS);
   fill(255, 255, 0)
   ellipse(pos.x, pos.y, rad, rad);
 }

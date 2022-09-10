@@ -251,22 +251,34 @@
 //   }
 // }
 
-// #12 function arg and parameter
+// // #12 function arg and parameter
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   background(0);
+// }
+
+// function draw() {
+//   lollipop(100, 150, 70);
+//   lollipop(200, 400, 100);
+//   lollipop(300, 500, 50);
+// }
+
+// function lollipop(x, y, dia) {
+//   fill(255);
+//   rect(x - 5, y, 10, 150);
+//   fill(0, 255, 200);
+//   ellipseMode(CENTER);
+//   ellipse(x, y, dia, dia);
+// }
+
+// #13 function return
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(0);
+  km = milesTokm(87.9);
+  print(km);
+  km1 = milesTokm(100);
+  print(km1);
 }
-
-function draw() {
-  lollipop(100, 150, 70);
-  lollipop(200, 400, 100);
-  lollipop(300, 500, 50);
-}
-
-function lollipop(x, y, dia) {
-  fill(255);
-  rect(x - 5, y, 10, 150);
-  fill(0, 255, 200);
-  ellipseMode(CENTER);
-  ellipse(x, y, dia, dia);
+function milesTokm(miles) {
+  km = miles * 1.6;
+  return km;
 }

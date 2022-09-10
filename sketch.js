@@ -238,6 +238,7 @@ function setup() {
   background(0);
   stroke(255);
   strokeWeight(2);
+  frameRate(7);
 }
 
 function draw() {

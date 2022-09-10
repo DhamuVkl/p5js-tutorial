@@ -207,27 +207,45 @@
 // }
 
 // #10 loop
+// rad = 25;
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   background(0);
+// }
+
+// function draw() {
+//   let x = 0;
+//   // atempt #1
+//   while (x <= width) {
+//     ellipseMode(CENTER);
+//     fill(0, 255, 0);
+//     ellipse(x, 200, rad, rad);
+//     x += 50;
+//   }
+//   // atempt #2
+//   for (let a = 0; a <= width; a += 50) {
+//     ellipseMode(CENTER);
+//     fill(255, 0, 0);
+//     ellipse(a, 400, rad, rad);
+//   }
+//   // atempt #1 & #2 both same
+// }
+
+// #11 nested loop
 rad = 25;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
+  stroke(255);
+  strokeWeight(2);
 }
 
 function draw() {
-  let x = 0;
-  // atempt #1
-  while (x <= width) {
-    ellipseMode(CENTER);
-    fill(0, 255, 0);
-    ellipse(x, 200, rad, rad);
-    x += 50;
+  for (let x = 0; x <= width; x += 50) {
+    for (let y = 0; y <= height; y += 50) {
+      ellipseMode(CENTER);
+      fill(random(255), random(200), 0);
+      ellipse(x, y, rad, rad);
+    }
   }
-  // atempt #2
-  for (let a = 0; a <= width; a += 50) {
-    ellipseMode(CENTER);
-    fill(255, 0, 0);
-    ellipse(a, 400, rad, rad);
-  }
-  // atempt #1 & #2 both same
 }
-

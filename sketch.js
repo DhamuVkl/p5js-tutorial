@@ -303,7 +303,29 @@
 //   }
 // }
 
-// #15 Array
+// // #15 Array
+// let words = ["Rainbow", "Coding", "Train", "Dhamu", "Hello"];
+// let index = 0;
+
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+// }
+
+// function draw() {
+//   background(0);
+//   fill(255);
+//   textSize(100);
+//   text(words[index], 10, 200);
+// }
+
+// function mousePressed() {
+//   index++;
+//   if (index == words.length) {
+//     index = 0;
+//   }
+// }
+
+// #16 Array loop
 let words = ["Rainbow", "Coding", "Train", "Dhamu", "Hello"];
 let index = 0;
 
@@ -314,13 +336,8 @@ function setup() {
 function draw() {
   background(0);
   fill(255);
-  textSize(100);
-  text(words[index], 10, 200);
-}
-
-function mousePressed() {
-  index += 1;
-  if (index == words.length) {
-    index = 0;
+  textSize(30);
+  for (index = 0; index <= 4; index++) {
+    text(words[index], index*0+10, index*40+200);
   }
 }

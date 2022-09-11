@@ -283,22 +283,44 @@
 //   return km;
 // }
 
-// #14 Class OOP(object orinted programing)
-let bubble;
+// // #14 Class OOP(object orinted programing)
+// let bubble;
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   bubble = new Bubble();
+//   print(bubble.x, bubble.y);
+// }
+
+// function draw() {
+//   background(0);
+
+// }
+
+// class Bubble {
+//   constructor() {
+//     this.x = 100;
+//     this.y = 200;
+//   }
+// }
+
+// #15 Array
+let words = ["Rainbow", "Coding", "Train", "Dhamu", "Hello"];
+let index = 0;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bubble = new Bubble();
-  print(bubble.x, bubble.y);
 }
 
 function draw() {
   background(0);
-
+  fill(255);
+  textSize(100);
+  text(words[index], 10, 200);
 }
 
-class Bubble {
-  constructor() {
-    this.x = 100;
-    this.y = 200;
+function mousePressed() {
+  index += 1;
+  if (index == words.length) {
+    index = 0;
   }
 }

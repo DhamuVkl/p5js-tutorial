@@ -188,19 +188,94 @@
 // }
 
 
-// #4 attempt with mouseIsPressed
+// // #4 attempt with mouseIsPressed
+// let bubbles = [];
+
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+// }
+
+// function mousePressed() {
+//   let b_r = random(10, 50);
+//   let d_speedX = random(10);
+//   let d_speedY = random(10);
+//   let b = new Bubble(mouseX, mouseY, b_r, d_speedX, d_speedY);
+//   bubbles.push(b);
+
+// }
+
+// function draw() {
+//   background(0);
+//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
+//     bubbles[bubble].move();
+//     bubbles[bubble].bounce();
+//     bubbles[bubble].display();
+//   }
+// }
+
+// class Bubble {
+//   constructor(_x, _y, _rad, _speedX, _speedY) {
+//     this.posX = _x;
+//     this.posY = _y;
+//     this.rad = _rad;
+//     this.dirX = 1;
+//     this.dirY = 1;
+//     this.speedX = _speedX;
+//     this.speedY = _speedY;
+
+//   }
+
+//   position() {
+//     this.posX = width / mouseX;
+//     this.posY = height / mouseY;
+//   }
+
+//   move() {
+//     this.posX = this.posX + this.speedX * this.dirX;
+//     this.posY = this.posY + this.speedY * this.dirY;
+//   }
+
+//   bounce() {
+//     if (this.posX > width - this.rad || this.posX < this.rad) {
+//       this.dirX *= -1;
+//     }
+//     if (this.posY > height - this.rad || this.posY < this.rad) {
+//       this.dirY *= -1;
+//     }
+//   }
+
+//   display() {
+//     stroke(255, 255, 0);
+//     strokeWeight(2);
+//     noFill();
+//     ellipseMode(RADIUS);
+//     // fill(255, 255, 0);
+//     ellipse(this.posX, this.posY, this.rad, this.rad);
+//   }
+// }
+
+
+// #5 attempt with color_mousePressed
 let bubbles = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  for (let bubble = 0; bubble < 100; bubble++) {
+    let a_x = random(width) * bubble + 20;
+    let a_y = random(height) * bubble + 40;
+    let b_r = random(50);
+    let d_speedX = random(10);
+    let d_speedY = random(10);
+    bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY)
+    bubbles[bubble].position();
+
+  }
 }
 
 function mousePressed() {
-  let b_r = random(10, 50);
-  let d_speedX = random(10);
-  let d_speedY = random(10);
-  let b = new Bubble(mouseX, mouseY, b_r, d_speedX, d_speedY);
-  bubbles.push(b);
+  for (let bubble = 0; bubble < bubbles.length; bubble++) {
+    bubbles[bubble].click(mouseX, mouseY);
+  }
 
 }
 
@@ -222,12 +297,21 @@ class Bubble {
     this.dirY = 1;
     this.speedX = _speedX;
     this.speedY = _speedY;
+    this.brightness = 0;
 
   }
 
+  click(mX, mY) {
+    let inside = dist(mX, mY, this.posX, this.posY);
+    if (inside < this.rad) {
+      console.log("You Clicked");
+      this.brightness = 255;
+    }
+  }
+
   position() {
-    this.posX = width / mouseX;
-    this.posY = height / mouseY;
+    this.posX = width / 2;
+    this.posY = height / 2;
   }
 
   move() {
@@ -247,9 +331,7 @@ class Bubble {
   display() {
     stroke(255, 255, 0);
     strokeWeight(2);
-    noFill();
-    ellipseMode(RADIUS);
-    // fill(255, 255, 0);
+    fill(this.brightness, 150);
     ellipse(this.posX, this.posY, this.rad, this.rad);
   }
 }

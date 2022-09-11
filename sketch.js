@@ -248,90 +248,90 @@
 //     stroke(255, 255, 0);
 //     strokeWeight(2);
 //     noFill();
-//     ellipseMode(RADIUS);
-//     // fill(255, 255, 0);
 //     ellipse(this.posX, this.posY, this.rad, this.rad);
 //   }
 // }
 
 
-// #5 attempt with color_mousePressed
-let bubbles = [];
+// // #5 attempt with color_mousePressed
+// let bubbles = [];
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  for (let bubble = 0; bubble < 100; bubble++) {
-    let a_x = random(width) * bubble + 20;
-    let a_y = random(height) * bubble + 40;
-    let b_r = random(50);
-    let d_speedX = random(10);
-    let d_speedY = random(10);
-    bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY)
-    bubbles[bubble].position();
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   for (let bubble = 0; bubble < 100; bubble++) {
+//     let a_x = random(width) * bubble + 20;
+//     let a_y = random(height) * bubble + 40;
+//     let b_r = random(50);
+//     let d_speedX = random(10);
+//     let d_speedY = random(10);
+//     bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY)
+//     bubbles[bubble].position();
 
-  }
-}
+//   }
+// }
 
-function mousePressed() {
-  for (let bubble = 0; bubble < bubbles.length; bubble++) {
-    bubbles[bubble].click(mouseX, mouseY);
-  }
+// function mousePressed() {
+//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
+//     bubbles[bubble].click(mouseX, mouseY);
+//   }
 
-}
+// }
 
-function draw() {
-  background(0);
-  for (let bubble = 0; bubble < bubbles.length; bubble++) {
-    bubbles[bubble].move();
-    bubbles[bubble].bounce();
-    bubbles[bubble].display();
-  }
-}
+// function draw() {
+//   background(0);
+//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
+//     bubbles[bubble].move();
+//     bubbles[bubble].bounce();
+//     bubbles[bubble].display();
+//   }
+// }
 
-class Bubble {
-  constructor(_x, _y, _rad, _speedX, _speedY) {
-    this.posX = _x;
-    this.posY = _y;
-    this.rad = _rad;
-    this.dirX = 1;
-    this.dirY = 1;
-    this.speedX = _speedX;
-    this.speedY = _speedY;
-    this.brightness = 0;
+// class Bubble {
+//   constructor(_x, _y, _rad, _speedX, _speedY) {
+//     this.posX = _x;
+//     this.posY = _y;
+//     this.rad = _rad;
+//     this.dirX = 1;
+//     this.dirY = 1;
+//     this.speedX = _speedX;
+//     this.speedY = _speedY;
+//     this.brightness = 0;
+//     this.shape = circle;
 
-  }
+//   }
 
-  click(mX, mY) {
-    let inside = dist(mX, mY, this.posX, this.posY);
-    if (inside < this.rad) {
-      console.log("You Clicked");
-      this.brightness = 255;
-    }
-  }
+//   click(mX, mY) {
+//     let inside = dist(mX, mY, this.posX, this.posY);
+//     if (inside < this.rad) {
+//       console.log("You Clicked");
+//       this.brightness = 255;
+//       this.shape = square;
+//     }
+//   }
 
-  position() {
-    this.posX = width / 2;
-    this.posY = height / 2;
-  }
+//   position() {
+//     this.posX = width / 2;
+//     this.posY = height / 2;
+//   }
 
-  move() {
-    this.posX = this.posX + this.speedX * this.dirX;
-    this.posY = this.posY + this.speedY * this.dirY;
-  }
+//   move() {
+//     this.posX = this.posX + this.speedX * this.dirX;
+//     this.posY = this.posY + this.speedY * this.dirY;
+//   }
 
-  bounce() {
-    if (this.posX > width - this.rad || this.posX < this.rad) {
-      this.dirX *= -1;
-    }
-    if (this.posY > height - this.rad || this.posY < this.rad) {
-      this.dirY *= -1;
-    }
-  }
+//   bounce() {
+//     if (this.posX > width - this.rad || this.posX < this.rad) {
+//       this.dirX *= -1;
+//     }
+//     if (this.posY > height - this.rad || this.posY < this.rad) {
+//       this.dirY *= -1;
+//     }
+//   }
 
-  display() {
-    stroke(255, 255, 0);
-    strokeWeight(2);
-    fill(this.brightness, 150);
-    ellipse(this.posX, this.posY, this.rad, this.rad);
-  }
-}
+//   display() {
+//     stroke(255, 255, 0);
+//     strokeWeight(2);
+//     fill(this.brightness, 150);
+//     this.shape(this.posX, this.posY, this.rad);
+//   }
+// }

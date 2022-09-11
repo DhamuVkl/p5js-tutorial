@@ -57,59 +57,66 @@
 
 
 let bubble;
-bubble.radius();
-bubble.speed();
-bubble.direction();
-
+let bubble1;
+let bubble2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bubble = new Bubble();
+  bubble = new Bubble(0, 0, 50, 2.8, 2.2);
+  bubble1 = new Bubble(100, 100, 100, 5, 4);
+  bubble2 = new Bubble(400, 400, 70, 3, 4);
   bubble.position();
-
-
+  bubble1.position();
+  bubble2.position();
 }
 
 function draw() {
-bubble.move();
-bubble.bounce();
-bubble.display();
+  background(0);
+  bubble.move();
+  bubble.bounce();
+  bubble.display();
+  bubble1.move();
+  bubble1.bounce();
+  bubble1.display();
+  bubble2.move();
+  bubble2.bounce();
+  bubble2.display();
 }
 
 class Bubble {
-  radius() {
-    this.rad = 50;
+  constructor(_x, _y, _rad, _speedX, _speedY) {
+    this.posX = _x;
+    this.posY = _y;
+    this.rad = _rad;
+    this.dirX = 1;
+    this.dirY = 1;
+    this.speedX = _speedX;
+    this.speedY = _speedY;
+
   }
   position() {
-    this.x = width / 2;
-    this.y = height / 2;
+    this.posX = width / 2;
+    this.posY = height / 2;
   }
-  direction(){
-    this.x = 1;
-    this.y = 1;
-  }
-  speed(){
-    this.x = 2.8;
-    this.y = 2.2;
-  }
+
   move() {
-    this.x = position.x + speed.x * direction.x;
-    this.y = position.y + speed.y * direction.y;
+    this.posX = this.posX + this.speedX * this.dirX;
+    this.posY = this.posY + this.speedY * this.dirY;
   }
+
   bounce() {
-    if (position.x > width - radius.rad || position.x < radius.rad) {
-      direction.x *= -1;
+    if (this.posX > width - this.rad || this.posX < this.rad) {
+      this.dirX *= -1;
     }
-    if (position.y > height - radius.rad || position.y < radius.rad) {
-      direction.y *= -1;
+    if (this.posY > height - this.rad || this.posY < this.rad) {
+      this.dirY *= -1;
     }
   }
+
   display() {
-    background(0);
     noStroke();
     ellipseMode(RADIUS);
     fill(255, 255, 0)
-    ellipse(position.x, position.y, radius.rad, radius.rad);
+    ellipse(this.posX, this.posY, this.rad, this.rad);
   }
-
 }

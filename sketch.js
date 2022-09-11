@@ -1,5 +1,5 @@
 
-// // #9 Bouncing ball
+// // #1 Bouncing ball
 // let rad = 50;
 // let speed = {
 //   x: 2.8,
@@ -55,32 +55,94 @@
 
 
 
+// // #2 bouning ball with class
+// let bubble;
+// let bubble1;
+// let bubble2;
 
-let bubble;
-let bubble1;
-let bubble2;
+// function setup() {
+//   createCanvas(windowWidth, windowHeight);
+//   bubble = new Bubble(0, 0, 50, 2.8, 2.2);
+//   bubble1 = new Bubble(100, 100, 100, 5, 4);
+//   bubble2 = new Bubble(400, 400, 70, 3, 4);
+//   bubble.position();
+//   bubble1.position();
+//   bubble2.position();
+// }
+
+// function draw() {
+//   background(0);
+//   bubble.move();
+//   bubble.bounce();
+//   bubble.display();
+//   bubble1.move();
+//   bubble1.bounce();
+//   bubble1.display();
+//   bubble2.move();
+//   bubble2.bounce();
+//   bubble2.display();
+// }
+
+// class Bubble {
+//   constructor(_x, _y, _rad, _speedX, _speedY) {
+//     this.posX = _x;
+//     this.posY = _y;
+//     this.rad = _rad;
+//     this.dirX = 1;
+//     this.dirY = 1;
+//     this.speedX = _speedX;
+//     this.speedY = _speedY;
+
+//   }
+//   position() {
+//     this.posX = width / 2;
+//     this.posY = height / 2;
+//   }
+
+//   move() {
+//     this.posX = this.posX + this.speedX * this.dirX;
+//     this.posY = this.posY + this.speedY * this.dirY;
+//   }
+
+//   bounce() {
+//     if (this.posX > width - this.rad || this.posX < this.rad) {
+//       this.dirX *= -1;
+//     }
+//     if (this.posY > height - this.rad || this.posY < this.rad) {
+//       this.dirY *= -1;
+//     }
+//   }
+
+//   display() {
+//     noStroke();
+//     ellipseMode(RADIUS);
+//     fill(255, 255, 0)
+//     ellipse(this.posX, this.posY, this.rad, this.rad);
+//   }
+// }
+
+// #3 bouning ball with array
+let bubbles = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bubble = new Bubble(0, 0, 50, 2.8, 2.2);
-  bubble1 = new Bubble(100, 100, 100, 5, 4);
-  bubble2 = new Bubble(400, 400, 70, 3, 4);
-  bubble.position();
-  bubble1.position();
-  bubble2.position();
+
+  for (let bubble = 0; bubble < 100; bubble++) {
+    let a = random(width)*bubble + 20;
+    let b = random(height)*bubble + 40;
+    let c = random(90);
+    bubbles[bubble] = new Bubble(a, b, c, 2.8, 2.2)
+    bubbles[bubble].position();
+  }
 }
 
 function draw() {
   background(0);
-  bubble.move();
-  bubble.bounce();
-  bubble.display();
-  bubble1.move();
-  bubble1.bounce();
-  bubble1.display();
-  bubble2.move();
-  bubble2.bounce();
-  bubble2.display();
+  for (let bubble = 0; bubble < bubbles.length; bubble++) {
+    bubbles[bubble].move();
+    bubbles[bubble].bounce();
+    bubbles[bubble].display();
+  }
 }
 
 class Bubble {

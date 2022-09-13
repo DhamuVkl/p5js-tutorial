@@ -56,282 +56,256 @@
 
 
 // // #2 bouning ball with class
+// // ! changes => removed position in setup also improved the bounce() and move()
 // let bubble;
 // let bubble1;
-// let bubble2;
 
 // function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   bubble = new Bubble(0, 0, 50, 2.8, 2.2);
-//   bubble1 = new Bubble(100, 100, 100, 5, 4);
-//   bubble2 = new Bubble(400, 400, 70, 3, 4);
-//   bubble.position();
-//   bubble1.position();
-//   bubble2.position();
+//     createCanvas(windowWidth, windowHeight);
+//     bubble = new Bubble(0, 0, 50, 2.8, 2.2);
+//     bubble1 = new Bubble(100, 100, 100, 5, 4);
 // }
 
 // function draw() {
-//   background(0);
-//   bubble.move();
-//   bubble.bounce();
-//   bubble.display();
-//   bubble1.move();
-//   bubble1.bounce();
-//   bubble1.display();
-//   bubble2.move();
-//   bubble2.bounce();
-//   bubble2.display();
+//     background(0);
+//     bubble.move();
+//     bubble.bounce();
+//     bubble.display();
+//     bubble1.move();
+//     bubble1.bounce();
+//     bubble1.display();
 // }
 
 // class Bubble {
-//   constructor(_x, _y, _rad, _speedX, _speedY) {
-//     this.posX = _x;
-//     this.posY = _y;
-//     this.rad = _rad;
-//     this.dirX = 1;
-//     this.dirY = 1;
-//     this.speedX = _speedX;
-//     this.speedY = _speedY;
+//     constructor(_x, _y, _rad, _speedX, _speedY) {
+//         this.ball_X = _x + _rad; // ! added _rad to avoid stuck in orgin(0,0)
+//         this.ball_Y = _y + _rad;
+//         this.rad = _rad;
+//         this.dirX = -1;
+//         this.dirY = -1;
+//         this.ball_speed_X = _speedX;
+//         this.ball_speed_Y = _speedY;
 
-//   }
-//   position() {
-//     this.posX = width / 2;
-//     this.posY = height / 2;
-//   }
-
-//   move() {
-//     this.posX = this.posX + this.speedX * this.dirX;
-//     this.posY = this.posY + this.speedY * this.dirY;
-//   }
-
-//   bounce() {
-//     if (this.posX > width - this.rad || this.posX < this.rad) {
-//       this.dirX *= -1;
 //     }
-//     if (this.posY > height - this.rad || this.posY < this.rad) {
-//       this.dirY *= -1;
-//     }
-//   }
 
-//   display() {
-//     noStroke();
-//     ellipseMode(RADIUS);
-//     fill(255, 255, 0)
-//     ellipse(this.posX, this.posY, this.rad, this.rad);
-//   }
+//     move() {
+//         this.ball_X += this.ball_speed_X;
+//         this.ball_Y += this.ball_speed_Y;
+//     }
+
+//     bounce() {
+//         if (this.ball_X + this.rad > width || this.ball_X - this.rad < 0) {
+//             this.ball_speed_X *= this.dirX;
+//         }
+
+//         if (this.ball_Y + this.rad > height || this.ball_Y - this.rad < 0) {
+//             this.ball_speed_Y *= this.dirY;
+//         }
+//     }
+
+//     display() {
+//         noStroke();
+//         fill(255, 255, 0)
+//         circle(this.ball_X, this.ball_Y, this.rad * 2);
+//     }
 // }
 
 // // #3 bouning ball with array
 // let bubbles = [];
 
 // function setup() {
-//   createCanvas(windowWidth, windowHeight);
+//     createCanvas(windowWidth, windowHeight);
 
-//   for (let bubble = 0; bubble < 100; bubble++) {
-//     let a_x = random(width)*bubble + 20;
-//     let a_y = random(height)*bubble + 40;
-//     let b_r = random(50);
-//     let d_speedX = random(10);
-//     let d_speedY = random(10);
-//     bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY)
-//     bubbles[bubble].position();
-//   }
+//     for (let bubble = 0; bubble < 100; bubble++) {
+//         let b_r = random(10, 50);
+//         let a_x = random(width - b_r * 2); // ! less the position(a_x, a_y) to avoid stuck in end of window when place the bubble
+//         let a_y = random(height - b_r * 2);
+//         let d_speedX = random(2, 10);
+//         let d_speedY = random(1, 10);
+//         bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY);
+//     }
 // }
 
 // function draw() {
-//   background(0);
-//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
-//     bubbles[bubble].move();
-//     bubbles[bubble].bounce();
-//     bubbles[bubble].display();
-//   }
+//     background(0);
+//     for (let bubble = 0; bubble < bubbles.length; bubble++) {
+//         bubbles[bubble].move();
+//         bubbles[bubble].bounce();
+//         bubbles[bubble].display();
+//     }
 // }
 
 // class Bubble {
-//   constructor(_x, _y, _rad, _speedX, _speedY) {
-//     this.posX = _x;
-//     this.posY = _y;
-//     this.rad = _rad;
-//     this.dirX = 1;
-//     this.dirY = 1;
-//     this.speedX = _speedX;
-//     this.speedY = _speedY;
-
-//   }
-//   position() {
-//     this.posX = width / 2;
-//     this.posY = height / 2;
-//   }
-
-//   move() {
-//     this.posX = this.posX + this.speedX * this.dirX;
-//     this.posY = this.posY + this.speedY * this.dirY;
-//   }
-
-//   bounce() {
-//     if (this.posX > width - this.rad || this.posX < this.rad) {
-//       this.dirX *= -1;
+//     constructor(_x, _y, _rad, _speedX, _speedY) {
+//         this.ball_X = _x + _rad; // ! added _rad to avoid stuck in orgin(0,0)
+//         this.ball_Y = _y + _rad;
+//         this.rad = _rad;
+//         this.dirX = -1;
+//         this.dirY = -1;
+//         this.ball_speed_X = _speedX;
+//         this.ball_speed_Y = _speedY;
 //     }
-//     if (this.posY > height - this.rad || this.posY < this.rad) {
-//       this.dirY *= -1;
-//     }
-//   }
 
-//   display() {
-//     stroke(255, 255, 0);
-//     strokeWeight(2);
-//     noFill();
-//     ellipseMode(RADIUS);
-//     // fill(255, 255, 0);
-//     ellipse(this.posX, this.posY, this.rad, this.rad);
-//   }
+//     move() {
+//         this.ball_X += this.ball_speed_X;
+//         this.ball_Y += this.ball_speed_Y;
+//     }
+
+//     bounce() {
+//         if (this.ball_X + this.rad > width || this.ball_X - this.rad < 0) {
+//             this.ball_speed_X *= this.dirX;
+//         }
+
+//         if (this.ball_Y + this.rad > height || this.ball_Y - this.rad < 0) {
+//             this.ball_speed_Y *= this.dirY;
+//         }
+//     }
+
+//     display() {
+//         stroke(255, 255, 0);
+//         strokeWeight(2);
+//         noFill();
+//         circle(this.ball_X, this.ball_Y, this.rad * 2);
+//     }
 // }
 
 
-// // #4 attempt with mouseIsPressed
+// // #4 attempt with mousePressed
 // let bubbles = [];
 
 // function setup() {
-//   createCanvas(windowWidth, windowHeight);
+//     createCanvas(windowWidth, windowHeight);
 // }
 
 // function mousePressed() {
-//   let b_r = random(10, 50);
-//   let d_speedX = random(10);
-//   let d_speedY = random(10);
-//   let b = new Bubble(mouseX, mouseY, b_r, d_speedX, d_speedY);
-//   bubbles.push(b);
+//     let b_r = random(10, 50);
+//     let d_speedX = random(2, 10);
+//     let d_speedY = random(1, 10);
+//     let bubble = new Bubble(mouseX, mouseY, b_r, d_speedX, d_speedY);
+//     bubbles.push(bubble);
 
 // }
 
 // function draw() {
-//   background(0);
-//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
-//     bubbles[bubble].move();
-//     bubbles[bubble].bounce();
-//     bubbles[bubble].display();
-//   }
+//     background(0);
+//     for (let bubble = 0; bubble < bubbles.length; bubble++) {
+//         bubbles[bubble].move();
+//         bubbles[bubble].bounce();
+//         bubbles[bubble].display();
+//     }
 // }
 
 // class Bubble {
-//   constructor(_x, _y, _rad, _speedX, _speedY) {
-//     this.posX = _x;
-//     this.posY = _y;
-//     this.rad = _rad;
-//     this.dirX = 1;
-//     this.dirY = 1;
-//     this.speedX = _speedX;
-//     this.speedY = _speedY;
-
-//   }
-
-//   position() {
-//     this.posX = width / mouseX;
-//     this.posY = height / mouseY;
-//   }
-
-//   move() {
-//     this.posX = this.posX + this.speedX * this.dirX;
-//     this.posY = this.posY + this.speedY * this.dirY;
-//   }
-
-//   bounce() {
-//     if (this.posX > width - this.rad || this.posX < this.rad) {
-//       this.dirX *= -1;
+//     constructor(_x, _y, _rad, _speedX, _speedY) {
+//         this.ball_X = _x + _rad; // ! added _rad to avoid stuck in orgin(0,0)
+//         this.ball_Y = _y + _rad;
+//         this.rad = _rad;
+//         this.dirX = -1;
+//         this.dirY = -1;
+//         this.ball_speed_X = _speedX;
+//         this.ball_speed_Y = _speedY;
 //     }
-//     if (this.posY > height - this.rad || this.posY < this.rad) {
-//       this.dirY *= -1;
-//     }
-//   }
 
-//   display() {
-//     stroke(255, 255, 0);
-//     strokeWeight(2);
-//     noFill();
-//     ellipse(this.posX, this.posY, this.rad, this.rad);
-//   }
+//     move() {
+//         this.ball_X += this.ball_speed_X;
+//         this.ball_Y += this.ball_speed_Y;
+//     }
+
+//     bounce() {
+//         if (this.ball_X + this.rad > width || this.ball_X - this.rad < 0) {
+//             this.ball_speed_X *= this.dirX;
+//         }
+
+//         if (this.ball_Y + this.rad > height || this.ball_Y - this.rad < 0) {
+//             this.ball_speed_Y *= this.dirY;
+//         }
+//     }
+
+//     display() {
+//         stroke(255, 255, 0);
+//         strokeWeight(2);
+//         noFill();
+//         circle(this.ball_X, this.ball_Y, this.rad * 2);
+//     }
 // }
 
 
-// // #5 attempt with color_mousePressed
-// let bubbles = [];
+// #5 attempt with color_mousePressed
+let bubbles = [];
 
-// function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   for (let bubble = 0; bubble < 100; bubble++) {
-//     let a_x = random(width) * bubble + 20;
-//     let a_y = random(height) * bubble + 40;
-//     let b_r = random(50);
-//     let d_speedX = random(10);
-//     let d_speedY = random(10);
-//     bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY)
-//     bubbles[bubble].position();
+function setup() {
+    createCanvas(windowWidth, windowHeight);
 
-//   }
-// }
+    for (let bubble = 0; bubble < 10; bubble++) {
+        let b_r = random(10, 50);
+        let a_x = random(width - b_r * 2); // ! less the position(a_x, a_y) to avoid stuck in end of window when place the bubble
+        let a_y = random(height - b_r * 2);
+        let d_speedX = random(2, 10);
+        let d_speedY = random(1, 10);
+        bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY);
+    }
+}
 
-// function mousePressed() {
-//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
-//     bubbles[bubble].click(mouseX, mouseY);
-//   }
+function mousePressed() {
+    for (let bubble = 0; bubble < bubbles.length; bubble++) {
+        bubbles[bubble].click(mouseX, mouseY);
+    }
 
-// }
+}
 
-// function draw() {
-//   background(0);
-//   for (let bubble = 0; bubble < bubbles.length; bubble++) {
-//     bubbles[bubble].move();
-//     bubbles[bubble].bounce();
-//     bubbles[bubble].display();
-//   }
-// }
+function draw() {
+    background(0);
+    for (let bubble = 0; bubble < bubbles.length; bubble++) {
+        bubbles[bubble].move();
+        bubbles[bubble].bounce();
+        bubbles[bubble].display();
+    }
+}
 
-// class Bubble {
-//   constructor(_x, _y, _rad, _speedX, _speedY) {
-//     this.posX = _x;
-//     this.posY = _y;
-//     this.rad = _rad;
-//     this.dirX = 1;
-//     this.dirY = 1;
-//     this.speedX = _speedX;
-//     this.speedY = _speedY;
-//     this.brightness = 0;
-//     this.shape = circle;
+class Bubble {
+    constructor(_x, _y, _rad, _speedX, _speedY) {
+        this.ball_X = _x + _rad; // ! added _rad to avoid stuck in orgin(0,0)
+        this.ball_Y = _y + _rad;
+        this.rad = _rad;
+        this.dirX = -1;
+        this.dirY = -1;
+        this.ball_speed_X = _speedX;
+        this.ball_speed_Y = _speedY;
+        this.brightness = 0;
+        this.shape = circle;
 
-//   }
+    }
 
-//   click(mX, mY) {
-//     let inside = dist(mX, mY, this.posX, this.posY);
-//     if (inside < this.rad) {
-//       console.log("You Clicked");
-//       this.brightness = 255;
-//       this.shape = square;
-//     }
-//   }
+    click(mX, mY) {
+        let inside = dist(mX, mY, this.ball_X, this.ball_Y);
+        if (inside < this.rad) {
+            console.log("You Clicked");
+            this.brightness = 255;
+            this.shape = square;
+        }
+    }
 
-//   position() {
-//     this.posX = width / 2;
-//     this.posY = height / 2;
-//   }
 
-//   move() {
-//     this.posX = this.posX + this.speedX * this.dirX;
-//     this.posY = this.posY + this.speedY * this.dirY;
-//   }
 
-//   bounce() {
-//     if (this.posX > width - this.rad || this.posX < this.rad) {
-//       this.dirX *= -1;
-//     }
-//     if (this.posY > height - this.rad || this.posY < this.rad) {
-//       this.dirY *= -1;
-//     }
-//   }
+    move() {
+        this.ball_X += this.ball_speed_X;
+        this.ball_Y += this.ball_speed_Y;
+    }
 
-//   display() {
-//     stroke(255, 255, 0);
-//     strokeWeight(2);
-//     fill(this.brightness, 150);
-//     this.shape(this.posX, this.posY, this.rad);
-//   }
-// }
+    bounce() {
+        if (this.ball_X + this.rad > width || this.ball_X - this.rad < 0) {
+            this.ball_speed_X *= this.dirX;
+        }
+
+        if (this.ball_Y + this.rad > height || this.ball_Y - this.rad < 0) {
+            this.ball_speed_Y *= this.dirY;
+        }
+    }
+
+    display() {
+        stroke(255, 255, 0);
+        strokeWeight(2);
+        fill(this.brightness, 150);
+        this.shape(this.ball_X, this.ball_Y, this.rad * 2);
+    }
+}

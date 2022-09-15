@@ -234,19 +234,21 @@
 let bubbles = [];
 
 function setup() {
+
     createCanvas(windowWidth, windowHeight);
 
-    for (let bubble = 0; bubble < 10; bubble++) {
-        let b_r = random(10, 50);
+    for (let bubble = 0; bubble < 100; bubble++) {
+        let b_r = random(20, 50);
         let a_x = random(width - b_r * 2); // ! less the position(a_x, a_y) to avoid stuck in end of window when place the bubble
         let a_y = random(height - b_r * 2);
-        let d_speedX = random(2, 10);
-        let d_speedY = random(1, 10);
+        let d_speedX = random(2, 5);
+        let d_speedY = random(1, 5);
         bubbles[bubble] = new Bubble(a_x, a_y, b_r, d_speedX, d_speedY);
     }
 }
 
 function mousePressed() {
+
     for (let bubble = 0; bubble < bubbles.length; bubble++) {
         bubbles[bubble].click(mouseX, mouseY);
     }
@@ -254,6 +256,7 @@ function mousePressed() {
 }
 
 function draw() {
+
     background(0);
     for (let bubble = 0; bubble < bubbles.length; bubble++) {
         bubbles[bubble].move();
@@ -263,6 +266,7 @@ function draw() {
 }
 
 class Bubble {
+
     constructor(_x, _y, _rad, _speedX, _speedY) {
         this.ball_X = _x + _rad; // ! added _rad to avoid stuck in orgin(0,0)
         this.ball_Y = _y + _rad;
@@ -272,20 +276,24 @@ class Bubble {
         this.ball_speed_X = _speedX;
         this.ball_speed_Y = _speedY;
         this.brightness = 0;
+        this.Red = 255;
+        this.Green = 255;
+        this.Blue = 255;
         this.shape = circle;
-
     }
 
     click(mX, mY) {
         let inside = dist(mX, mY, this.ball_X, this.ball_Y);
         if (inside < this.rad) {
             console.log("You Clicked");
-            this.brightness = 255;
-            this.shape = square;
+            this.Red = random(this.Red);
+            this.Green = random(this.Green);
+            this.Blue = random(this.Blue);
+            this.brightness = random(200, 255);
+            //console.log(this.Red, ', ' + this.Green, ', ' + this.Blue, ', ' + this.brightness);
+            this.shape = ellipse;
         }
     }
-
-
 
     move() {
         this.ball_X += this.ball_speed_X;
@@ -303,9 +311,9 @@ class Bubble {
     }
 
     display() {
-        stroke(255, 255, 0);
-        strokeWeight(2);
-        fill(this.brightness, 150);
+        //stroke(255, 255, 0);
+        //strokeWeight(2);
+        fill(this.Red, this.Green, this.Blue, this.brightness);
         this.shape(this.ball_X, this.ball_Y, this.rad * 2);
     }
 }
